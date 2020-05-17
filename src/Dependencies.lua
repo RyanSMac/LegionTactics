@@ -23,7 +23,7 @@ gTextures = {
 }
 
 gFrames = {
-    ['tiles'] = GenerateQuads(gTextures['tiles'], 24, 24)
+    ['tiles'] = GenerateQuads(gTextures['tiles'], TILE_SIZE, TILE_SIZE)
 }
 
 gFonts = {
