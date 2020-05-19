@@ -27,10 +27,11 @@ function PlayState:generateEntities(  )
     })
 
     self.entities[1].stateMachine = StateMachine {
-        ['idle'] = function() return EntityIdleState(self.entities[1]) end
+        ['idle'] = function() return EntityIdleState(self.entities[1]) end,
+        ['run'] = function() return EntityRunState(self.entities[1]) end
     }
 
-    self.entities[1]:changeState('idle')
+    self.entities[1]:changeState('run')
 end
 
 function PlayState:update( dt )

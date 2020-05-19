@@ -4,7 +4,12 @@ ENTITY_DEF = {
             ['idle'] = {
                 frames = {1, 2, 3, 4, 5, 6, 7, 8},
                 interval = 0.1,
-                texture = 'striker'
+                texture = 'striker-idle'
+            },
+            ['run'] = {
+                frames = {1, 2, 3, 4, 5, 6, 7, 8},
+                interval = 0.12,
+                texture = 'striker-run'
             }
         }
     }

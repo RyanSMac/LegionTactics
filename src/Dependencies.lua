@@ -22,15 +22,18 @@ require("src/states/StateStack")
 
 require("src/states/game/PlayState")
 require("src/states/entity/EntityIdleState")
+require("src/states/entity/EntityRunState")
 
 gTextures = {
     ['tiles'] = love.graphics.newImage('graphics/board/tileset1.png'),
-    ['striker'] = love.graphics.newImage('graphics/units/striker/striker_idle.png')
+    ['striker-idle'] = love.graphics.newImage('graphics/units/striker/striker_idle.png'),
+    ['striker-run'] = love.graphics.newImage('graphics/units/striker/striker_run.png')
 }
 
 gFrames = {
     ['tiles'] = GenerateQuads(gTextures['tiles'], TILE_SIZE, TILE_SIZE),
-    ['striker'] = GenerateQuads(gTextures['striker'], 39, 37)
+    ['striker-idle'] = GenerateQuads(gTextures['striker-idle'], 39, 37),
+    ['striker-run'] = GenerateQuads(gTextures['striker-run'], 41, 36)
 }
 
 gFonts = {
