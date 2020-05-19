@@ -6,8 +6,31 @@ function PlayState:init(  )
     self.boardHighlightX = 0
     self.boardHighlightY = 0
 
+    self.entities = {}
+    self:generateEntities()
+
     gSounds['theme']:setLooping(true)
     gSounds['theme']:play()
+end
+
+function PlayState:generateEntities(  )
+    table.insert(self.entities, Entity {
+        animations = ENTITY_DEF['striker'].animations,
+
+        x = 77,
+        y = 77,
+
+        width = 39,
+        height = 37,
+
+        hp = 1
+    })
+
+    self.entities[1].stateMachine = StateMachine {
+        ['idle'] = function() return EntityIdleState(self.entities[1]) end
+    }
+
+    self.entities[1]:changeState('idle')
 end
 
 function PlayState:update( dt )
@@ -24,9 +47,20 @@ function PlayState:update( dt )
         self.board.y = self.board.y - 1
     end
 
+    for i = #self.entities, 1, -1 do
+        local entity = self.entities[i]
+
+        entity:update(dt)
+    end
+
     self.board:update(dt)
 end
 
 function PlayState:render(  )
+
     self.board:render()
+
+    for k, entity in pairs(self.entities) do
+        entity:render()
+    end
 end

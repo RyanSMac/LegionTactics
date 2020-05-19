@@ -7,23 +7,30 @@ Event = require("lib/knife.event")
 push = require("lib/push")
 Timer = require("lib/knife.timer")
 
-require("src/constants")
-
-require("src/Tile")
+require("src/Animation")
 require("src/Board")
+require("src/constants")
+require("src/entity_defs")
+require("src/Entity")
+require("src/Tile")
+
 require("src/Util")
 
 require("src/states/BaseState")
+require("src/StateMachine")
 require("src/states/StateStack")
 
 require("src/states/game/PlayState")
+require("src/states/entity/EntityIdleState")
 
 gTextures = {
-    ['tiles'] = love.graphics.newImage('graphics/board/tileset1.png')
+    ['tiles'] = love.graphics.newImage('graphics/board/tileset1.png'),
+    ['striker'] = love.graphics.newImage('graphics/units/striker/striker_idle.png')
 }
 
 gFrames = {
-    ['tiles'] = GenerateQuads(gTextures['tiles'], TILE_SIZE, TILE_SIZE)
+    ['tiles'] = GenerateQuads(gTextures['tiles'], TILE_SIZE, TILE_SIZE),
+    ['striker'] = GenerateQuads(gTextures['striker'], 39, 37)
 }
 
 gFonts = {
