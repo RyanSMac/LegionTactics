@@ -13,6 +13,7 @@ require("src/constants")
 require("src/entity_defs")
 require("src/Entity")
 require("src/Tile")
+require("src/Unit")
 
 require("src/Util")
 
@@ -26,14 +27,14 @@ require("src/states/entity/EntityRunState")
 
 gTextures = {
     ['tiles'] = love.graphics.newImage('graphics/board/tileset1.png'),
-    ['striker-idle'] = love.graphics.newImage('graphics/units/striker/striker_idle.png'),
-    ['striker-run'] = love.graphics.newImage('graphics/units/striker/striker_run.png')
+    ['striker'] = love.graphics.newImage('graphics/units/striker/striker.png'),
+    ['prototype'] = love.graphics.newImage('graphics/units/prototype/prototype.png')
 }
 
 gFrames = {
     ['tiles'] = GenerateQuads(gTextures['tiles'], TILE_SIZE, TILE_SIZE),
-    ['striker-idle'] = GenerateQuads(gTextures['striker-idle'], 39, 37),
-    ['striker-run'] = GenerateQuads(gTextures['striker-run'], 41, 36)
+    ['striker'] = GenerateQuads(gTextures['striker'], ENTITY_DEF['striker'].width, ENTITY_DEF['striker'].height),
+    ['prototype'] = GenerateQuads(gTextures['prototype'], ENTITY_DEF['prototype'].width, ENTITY_DEF['prototype'].height)
 }
 
 gFonts = {

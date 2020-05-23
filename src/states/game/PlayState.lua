@@ -6,32 +6,15 @@ function PlayState:init(  )
     self.boardHighlightX = 0
     self.boardHighlightY = 0
 
-    self.entities = {}
-    self:generateEntities()
-
-    gSounds['theme']:setLooping(true)
-    gSounds['theme']:play()
-end
-
-function PlayState:generateEntities(  )
-    table.insert(self.entities, Entity {
-        animations = ENTITY_DEF['striker'].animations,
-
-        x = 77,
-        y = 77,
-
-        width = 39,
-        height = 37,
-
-        hp = 1
-    })
-
-    self.entities[1].stateMachine = StateMachine {
-        ['idle'] = function() return EntityIdleState(self.entities[1]) end,
-        ['run'] = function() return EntityRunState(self.entities[1]) end
+    self.unit = Unit {
+        type = 'prototype',
+        size = 3,
+        gridX = 2,
+        gridY = 2
     }
 
-    self.entities[1]:changeState('run')
+    --gSounds['theme']:setLooping(true)
+    --gSounds['theme']:play()
 end
 
 function PlayState:update( dt )
@@ -48,11 +31,19 @@ function PlayState:update( dt )
         self.board.y = self.board.y - 1
     end
 
-    for i = #self.entities, 1, -1 do
-        local entity = self.entities[i]
-
-        entity:update(dt)
+    if love.keyboard.isDown( 'p' ) then
+        for i = 1, #self.unit.entities do
+            self.unit.entities[i]:changeState('run')
+        end
     end
+
+    if love.keyboard.isDown( 'o' ) then
+        for i = 1, #self.unit.entities do
+            self.unit.entities[i]:changeState('idle')
+        end
+    end
+
+    self.unit:update(dt)
 
     self.board:update(dt)
 end
@@ -61,7 +52,5 @@ function PlayState:render(  )
 
     self.board:render()
 
-    for k, entity in pairs(self.entities) do
-        entity:render()
-    end
+    self.unit:render()
 end

@@ -4,11 +4,15 @@ function Entity:init( def )
     -- set animations
     self.animations = self:createAnimations(def.animations)
 
-    -- dimensions
-    self.x = def.x
-    self.y = def.y
+    self.offsetX = def.offsetX
+    self.offsetY = def.offsetY
+
     self.width = def.width
     self.height = def.height
+
+    -- dimensions
+    self.x = math.floor((def.x + self.offsetX) - (self.width / 2))
+    self.y = math.floor((def.y + self.offsetY) - (self.height / 2))
 
     --
     self.hp = def.hp

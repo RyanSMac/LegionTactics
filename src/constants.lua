@@ -7,6 +7,23 @@ WINDOW_HEIGHT = 720
 TILE_SIZE = 48
 
 --
+-- Unit Offsets
+--
+OFFSETS = {
+    ['top'] = {
+        x = 16,
+        y =12
+    },
+    ['middle'] = {
+        x = 30,
+        y = 24
+    },
+    ['bottom'] = {
+        x = 16,
+        y = 36
+    }
+}
+--
 -- tile IDs
 --
 MAPS = {
